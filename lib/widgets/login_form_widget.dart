@@ -23,7 +23,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   void validateForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -37,9 +37,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextFormField(
               validator: validatorFormFields,
@@ -53,10 +53,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               keyboardType: TextInputType.number,
               controller: _passwordController,
               maxLength: 5,
+              obscureText: true,
             ),
-            ElevatedButton(
-              onPressed: validateForm,
-              child: const Text("Ingresar"),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: validateForm,
+                child: const Text(
+                  "Ingresar",
+                  style: TextStyle(
+                      color: Colors.white, fontFamily: "Merriweather"),
+                ),
+              ),
             ),
           ],
         ),

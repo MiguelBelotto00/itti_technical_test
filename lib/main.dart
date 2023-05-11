@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itti_technical_test/bloc/clients/client_bloc.dart';
 import 'package:itti_technical_test/helpers/primary_colors_helpers.dart';
 import 'package:itti_technical_test/pages/login_page.dart';
 
@@ -16,10 +18,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Itti Test",
-      theme: ThemeData(primarySwatch: PrimaryColorsHelpers.mainAppColor),
-      home: const LoginPage(),
+    return BlocProvider(
+      create: (BuildContext context) => ClientBloc(),
+      lazy: false,
+      child: MaterialApp(
+        title: "Itti Test",
+        theme: ThemeData(primarySwatch: PrimaryColorsHelpers.mainAppColor),
+        home: const LoginPage(),
+      ),
     );
   }
 }
